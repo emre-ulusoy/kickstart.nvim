@@ -100,10 +100,15 @@ vim.g.have_nerd_font = false
 
 -- Custom options
 
--- tab width reduction to 4 spaces
-vim.o.expandtab = false
+-- tab width reduction to 4 spaces [ ] might need another look, feels silly
+vim.o.tabstop = 4
+vim.o.expandtab = false -- Prevent tabs from being converted into spaces
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
+
+
+vim.o.relativenumber = true
+
 -- --------------
 
 -- Make line numbers default

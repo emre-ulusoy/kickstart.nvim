@@ -5,6 +5,3 @@
   - [ ] in progress. added to the custom options section but not working. also did `expandtab` = false instead of using `noexpandtab`
 
 ## Notes
-
-- Occasionally take snapshots of the Lazy versions to be able to roll back to.
-  - [ ] figure out how.
