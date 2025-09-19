@@ -218,8 +218,21 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- [[ Custom keymaps ]]
+
+-- Move to beginning/end of line without taking fingers off of home row
+vim.keymap.set('n', 'H', '^', { desc = 'Move to beginning of line w/o taking fingers off home row' })
+vim.keymap.set('n', 'L', '$', { desc = 'Move to end of line w/o taking fingers off home row' })
+-- Move screen two lines at once
+vim.keymap.set('n', '<C-y>', '2<C-y>', { desc = 'Move view up x2' })
+vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Move view down x2' })
+
+-----------------------
+
 -- [[ Custom commands ]]
 vim.api.nvim_create_user_command("ClearRegs", [[let regs=split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"', '\zs')|for r in regs|call setreg(r, [])|endfor]], {})
+
+------------------------
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
