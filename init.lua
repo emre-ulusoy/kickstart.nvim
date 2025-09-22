@@ -226,6 +226,9 @@ vim.keymap.set('n', 'L', '$', { desc = 'Move to end of line w/o taking fingers o
 -- Move screen two lines at once
 vim.keymap.set('n', '<C-y>', '2<C-y>', { desc = 'Move view up x2' })
 vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Move view down x2' })
+-- Delete Neovim default mapping for Ctrl-T
+vim.keymap.del('n', '<C-t>')
+
 
 -----------------------
 
