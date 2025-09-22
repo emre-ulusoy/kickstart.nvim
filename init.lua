@@ -227,8 +227,9 @@ vim.keymap.set('n', 'L', '$', { desc = 'Move to end of line w/o taking fingers o
 vim.keymap.set('n', '<C-y>', '2<C-y>', { desc = 'Move view up x2' })
 vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Move view down x2' })
 -- Delete Neovim default mapping for Ctrl-T
-vim.keymap.del('n', '<C-t>')
-
+vim.keymap.set('n', '<C-t>', '<Nop>')
+-- Floating terminal
+vim.keymap.set({'n', 't'}, '<C-t>', '<cmd>FloatermToggle<CR>', { desc = 'Floating terminal' })
 
 -----------------------
 
@@ -1022,6 +1023,7 @@ require('lazy').setup({
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.floaterm',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
