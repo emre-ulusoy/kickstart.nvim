@@ -492,7 +492,7 @@ require('lazy').setup({
         }
       end, { desc = '[S]earch [/] in Open Files' })
 
-      -- Shortcut for searching your Neovim configuration files
+      -- Shortcut for searching your Neovim configuration files (NOT ANYMORE)
       vim.keymap.set('n', '<leader>sn', function()
         builtin.live_grep { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim config live grep' })
