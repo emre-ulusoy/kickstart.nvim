@@ -230,6 +230,9 @@ vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Move view down x2' })
 vim.keymap.set('n', '<C-t>', '<Nop>')
 -- Floating terminal
 vim.keymap.set({'n', 't'}, '<C-t>', '<cmd>FloatermToggle<CR>', { desc = 'Floating terminal' })
+-- Horizontal and vertical terminals (:ToggleTerm to close them, also they're kind of goofy)
+vim.keymap.set({'n', 't'}, '<C-1>', '<cmd>1ToggleTerm<CR><cmd>2ToggleTerm<CR><cmd>3ToggleTerm<CR>', { desc = 'Horizontal terminals' })
+vim.keymap.set({'n', 't'}, '<C-2>', '<cmd>4ToggleTerm direction=vertical size=60<CR><cmd>5ToggleTerm direction=vertical size=60<CR><cmd>6ToggleTerm direction=vertical size=60<CR>', { desc = 'Vertical terminals' })
 
 -----------------------
 
@@ -1024,6 +1027,7 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
   require 'kickstart.plugins.floaterm',
+  require 'kickstart.plugins.toggleterm',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
