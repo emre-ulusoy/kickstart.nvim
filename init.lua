@@ -231,8 +231,15 @@ vim.keymap.set('n', '<C-t>', '<Nop>')
 -- Floating terminal
 vim.keymap.set({'n', 't'}, '<C-t>', '<cmd>FloatermToggle<CR>', { desc = 'Floating terminal' })
 -- Horizontal and vertical terminals (:ToggleTerm to close them, also they're kind of goofy)
-vim.keymap.set({'n', 't'}, '<C-1>', '<cmd>1ToggleTerm<CR><cmd>2ToggleTerm<CR><cmd>3ToggleTerm<CR>', { desc = 'Horizontal terminals' })
-vim.keymap.set({'n', 't'}, '<C-2>', '<cmd>4ToggleTerm direction=vertical size=60<CR><cmd>5ToggleTerm direction=vertical size=60<CR><cmd>6ToggleTerm direction=vertical size=60<CR>', { desc = 'Vertical terminals' })
+vim.keymap.set({'n', 't'}, '<A-1>', '<cmd>1ToggleTerm<CR><cmd>2ToggleTerm<CR><cmd>3ToggleTerm<CR>', { desc = 'Horizontal terminals' })
+vim.keymap.set({'n', 't'}, '<A-2>', '<cmd>4ToggleTerm direction=vertical size=60<CR><cmd>5ToggleTerm direction=vertical size=60<CR><cmd>6ToggleTerm direction=vertical size=60<CR>', { desc = 'Vertical terminals' })
+-- Buffer stuff
+vim.keymap.set({'n', 't'}, '<leader>x', '<cmd>:bd<CR>', { desc = 'Close buffer' })
+vim.keymap.set('n', '<Tab>', '<Cmd>BufferNext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<C-b>', '<Cmd>BufferPick<CR>', { desc = 'Pick an open buffer' })
+
+
 
 -----------------------
 
