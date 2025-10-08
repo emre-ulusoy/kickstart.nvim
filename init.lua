@@ -186,9 +186,6 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -234,10 +231,17 @@ vim.keymap.set({'n', 't'}, '<C-t>', '<cmd>FloatermToggle<CR>', { desc = 'Floatin
 vim.keymap.set({'n', 't'}, '<A-1>', '<cmd>1ToggleTerm<CR><cmd>2ToggleTerm<CR><cmd>3ToggleTerm<CR>', { desc = 'Horizontal terminals' })
 vim.keymap.set({'n', 't'}, '<A-2>', '<cmd>4ToggleTerm direction=vertical size=60<CR><cmd>5ToggleTerm direction=vertical size=60<CR><cmd>6ToggleTerm direction=vertical size=60<CR>', { desc = 'Vertical terminals' })
 -- Buffer stuff
-vim.keymap.set({'n', 't'}, '<leader>x', '<cmd>:bd<CR>', { desc = 'Close buffer' })
+vim.keymap.set({'n', 't'}, '<C-x>', '<cmd>:bd<CR>', { desc = 'Close buffer' })
 vim.keymap.set('n', '<Tab>', '<Cmd>BufferNext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-b>', '<Cmd>BufferPick<CR>', { desc = 'Pick an open buffer' })
+-- Window stuff
+vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Open window whichkeys', noremap = true })
+
+-- Diagnostics
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open [d]iagnostic [q]uickfix list' })
+-- vim.keymap.set('n', '<leader>ds', builtin.diagnostics, { desc = '[d]iagnostics [s]earch' }) -- same as <l>sd from telescope, and that's where it is defined
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[d]iagnostics [f]loating window' })
 
 
 
@@ -392,6 +396,8 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>w', group = '[w]indow' },
+        { '<leader>d', group = '[d]iagnostics' },
         { 'gr', group = '[G]oto [R] defs, refs...' },
       },
     },
@@ -479,6 +485,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+      vim.keymap.set('n', '<leader>ds', builtin.diagnostics, { desc = '[d]iagnostics [s]earch' }) -- this is for the diagnostics section
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
