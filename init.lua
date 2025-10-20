@@ -231,12 +231,13 @@ vim.keymap.set({'n', 't'}, '<C-t>', '<cmd>FloatermToggle<CR>', { desc = 'Floatin
 vim.keymap.set({'n', 't'}, '<A-1>', '<cmd>1ToggleTerm<CR><cmd>2ToggleTerm<CR><cmd>3ToggleTerm<CR>', { desc = 'Horizontal terminals' })
 vim.keymap.set({'n', 't'}, '<A-2>', '<cmd>4ToggleTerm direction=vertical size=60<CR><cmd>5ToggleTerm direction=vertical size=60<CR><cmd>6ToggleTerm direction=vertical size=60<CR>', { desc = 'Vertical terminals' })
 -- Buffer stuff
-vim.keymap.set({'n', 't'}, '<C-x>', '<cmd>:bd<CR>', { desc = 'Close buffer' })
-vim.keymap.set('n', '<Tab>', '<Cmd>BufferNext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<C-b>', '<Cmd>BufferPick<CR>', { desc = 'Pick an open buffer' })
+vim.keymap.set({'n', 't'}, '<C-x>', '<cmd>:bd<CR>', { desc = 'Close split' })
+vim.keymap.set('n', '<leader>x', '<cmd>:BufferClose<CR>', { desc = 'Close buffer without closing split' })
+vim.keymap.set('n', '<Tab>', '<cmd>BufferNext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<C-b>', '<cmd>BufferPick<CR>', { desc = 'Pick an open buffer' })
 -- Window stuff
-vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Open window whichkeys', noremap = true })
+-- vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Open window whichkeys', noremap = true }) -- Doesn't work
 
 -- Diagnostics
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open [d]iagnostic [q]uickfix list' })
@@ -959,7 +960,7 @@ require('lazy').setup({
     end,
   },
 
-  -- Highlight todo, notes, etc in comments
+  -- Highlight todo, notes, etc in comments. Options are: PERF, HACK, TODO, NOTE, FIX, WARN[ING], TEST, and hopefully one day [ ]
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
