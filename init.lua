@@ -217,9 +217,18 @@ vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- [[ Custom keymaps ]]
 
+-- Redo with capital u (thought this already existed)
+vim.keymap.set('n', '<S-u>', '<C-r>', { desc = 'Redo with capital U' })
 -- Move to beginning/end of line without taking fingers off of home row
 vim.keymap.set('n', 'H', '^', { desc = 'Move to beginning of line w/o taking fingers off home row' })
 vim.keymap.set('n', 'L', '$', { desc = 'Move to end of line w/o taking fingers off home row' })
+-- Navigate when in insert mode
+vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left when in insert mode' })
+vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right when in insert mode' })
+-- Delete Neovim default mapping for Ctrl-K in insert mode
+vim.keymap.set('i', '<C-k>', '<Nop>')
+vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' })
+vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down when in insert mode' })
 -- Move screen two lines at once
 vim.keymap.set('n', '<C-y>', '2<C-y>', { desc = 'Move view up x2' })
 vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Move view down x2' })
@@ -237,14 +246,15 @@ vim.keymap.set('n', '<Tab>', '<cmd>BufferNext<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', { desc = 'Next buffer' })
 vim.keymap.set('n', '<C-b>', '<cmd>BufferPick<CR>', { desc = 'Pick an open buffer' })
 -- Window stuff
--- vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Open window whichkeys', noremap = true }) -- Doesn't work
+-- vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Open window which-keys', noremap = true }) -- Doesn't work
 
 -- Diagnostics
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open [d]iagnostic [q]uickfix list' })
 -- vim.keymap.set('n', '<leader>ds', builtin.diagnostics, { desc = '[d]iagnostics [s]earch' }) -- same as <l>sd from telescope, and that's where it is defined
 vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[d]iagnostics [f]loating window' })
 
-
+-- Delete Neovim default mapping for s to be able to use mini.surround
+vim.keymap.set({ 'n', 's' }, 's', '<Nop>')
 
 -----------------------
 
@@ -355,6 +365,10 @@ require('lazy').setup({
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.o.timeoutlen
       delay = 0,
+      triggers = {
+        { "<auto>", mode = "nixsotc" },
+        { "s", mode = { "n", "v" } },
+      },
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
@@ -960,7 +974,7 @@ require('lazy').setup({
     end,
   },
 
-  -- Highlight todo, notes, etc in comments. Options are: PERF, HACK, TODO, NOTE, FIX, WARN[ING], TEST, and hopefully one day [ ]
+  -- Highlight todo, notes, etc in comments. Options are: PERF, HACK, TODO, NOTE, FIX, WARN[ING], TEST, ERROR, INFO, and hopefully one day [ ]
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   { -- Collection of various small independent plugins/modules
