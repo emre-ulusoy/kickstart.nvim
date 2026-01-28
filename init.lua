@@ -256,6 +256,9 @@ vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[d]iagnos
 -- Delete Neovim default mapping for s to be able to use mini.surround
 vim.keymap.set({ 'n', 's' }, 's', '<Nop>')
 
+-- Remove whatever ctrl-enter maps to so I can use it globally for other things
+vim.keymap.set('n', '<C-Enter>', '<Nop>')
+
 -----------------------
 
 -- [[ Custom commands ]]
