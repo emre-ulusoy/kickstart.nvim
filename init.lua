@@ -220,18 +220,22 @@ vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 -- Redo with capital u (thought this already existed)
 vim.keymap.set('n', '<S-u>', '<C-r>', { desc = 'Redo with capital U' })
 -- Move to beginning/end of line without taking fingers off of home row
-vim.keymap.set('n', 'H', '^', { desc = 'Move to beginning of line w/o taking fingers off home row' })
-vim.keymap.set('n', 'L', '$', { desc = 'Move to end of line w/o taking fingers off home row' })
+vim.keymap.set({'n', 'v'}, 'H', '^', { desc = 'Move to beginning of line w/o taking fingers off home row' })
+vim.keymap.set({'n', 'v'}, 'L', '$', { desc = 'Move to end of line w/o taking fingers off home row' })
 -- Navigate when in insert mode
 vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left when in insert mode' })
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right when in insert mode' })
 -- Delete Neovim default mapping for Ctrl-K in insert mode
 vim.keymap.set('i', '<C-k>', '<Nop>')
-vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' })
+vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' }) -- Doesn't work
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down when in insert mode' })
--- Move screen two lines at once
+-- Move screen two lines at
 vim.keymap.set('n', '<C-y>', '2<C-y>', { desc = 'Move view up x2' })
 vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Move view down x2' })
+-- The Y -> $y mapping doesn't exist because it's the default in newer vim and nvim
+-- Deleting single characters shouldn't yank
+vim.keymap.set('n', 'x', '\"_x', { desc = 'Move view up x2' })
+
 -- Delete Neovim default mapping for Ctrl-T
 vim.keymap.set('n', '<C-t>', '<Nop>')
 -- Floating terminal
