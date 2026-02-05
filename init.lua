@@ -226,12 +226,12 @@ vim.keymap.set({'n', 'v'}, 'L', '$', { desc = 'Move to end of line w/o taking fi
 vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left when in insert mode' })
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right when in insert mode' })
 -- Delete Neovim default mapping for Ctrl-K in insert mode
-vim.keymap.set('i', '<C-k>', '<Nop>')
+-- vim.keymap.set('i', '<C-k>', '<Nop>')
 vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' }) -- Doesn't work
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down when in insert mode' })
 -- Move screen two lines at
-vim.keymap.set('n', '<C-y>', '2<C-y>', { desc = 'Move view up x2' })
-vim.keymap.set('n', '<C-e>', '2<C-e>', { desc = 'Move view down x2' })
+vim.keymap.set('n', '<C-y>', '<C-y><C-y>', { desc = 'Move view up x2' })
+vim.keymap.set('n', '<C-e>', '<C-e><C-e>', { desc = 'Move view down x2' })
 -- The Y -> $y mapping doesn't exist because it's the default in newer vim and nvim
 -- Deleting single characters shouldn't yank
 vim.keymap.set('n', 'x', '\"_x', { desc = 'Move view up x2' })
@@ -965,20 +965,24 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    'catppuccin/nvim',
+    name= "catppuccin",
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
+      -- ---@diagnostic disable-next-line: missing-fields
+      require('catppuccin').setup {
+        no_italic = true,
+        color_overrides = {
+          mocha = {
+            overlay2 = "#585b70"
+          },
         },
       }
 
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
 
