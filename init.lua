@@ -241,8 +241,8 @@ vim.keymap.set({'n', 'v'}, 'L', '$', { desc = 'Move to end of line w/o taking fi
 -- Navigate when in insert mode
 vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left when in insert mode' })
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right when in insert mode' })
--- Delete Neovim default mapping for Ctrl-K in insert mode
--- vim.keymap.set('i', '<C-k>', '<Nop>')
+-- vim.keymap.set('i', '<C-k>', '<Nop>') -- Delete Neovim default mapping for Ctrl-K in insert mode
+-- vim.api.nvim_del_keymap('i', '<C-k>') -- Also for deleting whatever it used to be. These aren't really necessary.
 vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' }) -- Doesn't work
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down when in insert mode' })
 -- Move screen two lines at
@@ -691,7 +691,7 @@ require('lazy').setup({
       -- You can press `g?` for help in this menu.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'lua_ls', -- Lua Language server
+        'lua-language-server', -- Lua Language server
         'stylua', -- Used to format Lua code
         -- You can add other tools here that you want Mason to install
       })
@@ -936,14 +936,16 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    config = function()
-      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
-      require('nvim-treesitter').install(filetypes)
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = filetypes,
-        callback = function() vim.treesitter.start() end,
-      })
-    end,
+    build = ':TSUpdate',
+    main = 'nvim-treesitter.configs',
+    opts = {
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      auto_install = true,
+      highlight = {
+        enable = true,
+      },
+      indent = { enable = true },
+    },
   },
   { -- Tabline: which tabs are open, which are changed, diagnostics
     'romgrk/barbar.nvim',
