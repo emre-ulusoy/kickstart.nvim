@@ -200,8 +200,6 @@ vim.diagnostic.config {
   jump = { float = true },
 }
 
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -241,19 +239,17 @@ vim.keymap.set({'n', 'v'}, 'L', '$', { desc = 'Move to end of line w/o taking fi
 -- Navigate when in insert mode
 vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left when in insert mode' })
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right when in insert mode' })
--- Delete Neovim default mapping for Ctrl-K in insert mode
--- vim.keymap.set('i', '<C-k>', '<Nop>')
+-- vim.keymap.set('i', '<C-k>', '<Nop>') -- Delete Neovim default mapping for Ctrl-K in insert mode
+-- vim.api.nvim_del_keymap('i', '<C-k>') -- Also for deleting whatever it used to be. These aren't really necessary.
 vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' }) -- Doesn't work
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down when in insert mode' })
 -- Move screen two lines at
-vim.keymap.set('n', '<C-y>', '<C-y><C-y>', { desc = 'Move view up x2' })
+vim.keymap.set('n', '<C-y>', '<C-y>:sleep 10ms<CR><C-y>', { desc = 'Move view up x2' })
 vim.keymap.set('n', '<C-e>', '<C-e><C-e>', { desc = 'Move view down x2' })
 -- The Y -> $y mapping doesn't exist because it's the default in newer vim and nvim
 -- Deleting single characters shouldn't yank
-vim.keymap.set('n', 'x', '\"_x', { desc = 'Move view up x2' })
+vim.keymap.set('n', 'x', '\"_x', { desc = 'dont save single char deletions' })
 
--- Delete Neovim default mapping for Ctrl-T
-vim.keymap.set('n', '<C-t>', '<Nop>')
 -- Floating terminal
 vim.keymap.set({'n', 't'}, '<C-t>', '<cmd>FloatermToggle<CR>', { desc = 'Floating terminal' })
 -- Horizontal and vertical terminals (:ToggleTerm to close them, also they're kind of goofy)
@@ -263,15 +259,15 @@ vim.keymap.set({'n', 't'}, '<A-2>', '<cmd>4ToggleTerm direction=vertical size=60
 vim.keymap.set({'n', 't'}, '<C-x>', '<cmd>:bd<CR>', { desc = 'Close split' })
 vim.keymap.set('n', '<leader>x', '<cmd>:BufferClose<CR>', { desc = 'Close buffer without closing split' })
 vim.keymap.set('n', '<Tab>', '<cmd>BufferNext<CR>', { desc = 'Next buffer' })
-vim.keymap.set('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', { desc = 'Previous buffer' })
 vim.keymap.set('n', '<C-b>', '<cmd>BufferPick<CR>', { desc = 'Pick an open buffer' })
 -- Window stuff
 -- vim.keymap.set('n', '<leader>w', '<C-w>', { desc = 'Open window which-keys', noremap = true }) -- Doesn't work
 
 -- Diagnostics
-vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open [d]iagnostic [q]uickfix list' })
--- vim.keymap.set('n', '<leader>ds', builtin.diagnostics, { desc = '[d]iagnostics [s]earch' }) -- same as <l>sd from telescope, and that's where it is defined
-vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[d]iagnostics [f]loating window' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open [D]iagnostic [Q]uickfix list' })
+-- vim.keymap.set('n', '<leader>ds', builtin.diagnostics, { desc = '[D]iagnostics [S]earch' }) -- same as <l>sd from telescope, and that's where it is defined
+vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float, { desc = '[D]iagnostics [F]loating window' })
 
 -- Delete Neovim default mapping for s to be able to use mini.surround
 vim.keymap.set({ 'n', 's' }, 's', '<Nop>')
@@ -338,23 +334,6 @@ require('lazy').setup({
   --            })
   --        end,
   --    }
-  --
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`.
-  --
-  -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -478,7 +457,7 @@ require('lazy').setup({
       vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-      vim.keymap.set('n', '<leader>ds', builtin.diagnostics, { desc = '[d]iagnostics [s]earch' }) -- this is for the diagnostics section
+      vim.keymap.set('n', '<leader>ds', builtin.diagnostics, { desc = '[D]iagnostics [S]earch' }) -- this is for the diagnostics section, but is here.
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
@@ -691,7 +670,7 @@ require('lazy').setup({
       -- You can press `g?` for help in this menu.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'lua_ls', -- Lua Language server
+        'lua-language-server', -- Lua Language server
         'stylua', -- Used to format Lua code
         -- You can add other tools here that you want Mason to install
       })
@@ -936,34 +915,15 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
-    config = function()
-      local filetypes = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
-      require('nvim-treesitter').install(filetypes)
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = filetypes,
-        callback = function() vim.treesitter.start() end,
-      })
-    end,
-  },
-  { -- Tabline: which tabs are open, which are changed, diagnostics
-    'romgrk/barbar.nvim',
-    dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
-      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
-    },
-    init = function() vim.g.barbar_auto_setup = false end,
+    build = ':TSUpdate',
+    main = 'nvim-treesitter.configs',
     opts = {
-      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-      icons = {
-        buffer_index = true,
-        diagnostics = {
-          [vim.diagnostic.severity.ERROR] = {enabled = true, icon = ' '},
-          [vim.diagnostic.severity.WARN] = {enabled = true, icon = ' '},
-          [vim.diagnostic.severity.INFO] = {enabled = true, icon = '󰙎'},
-        },
-        modified = {button = ''},
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      auto_install = true,
+      highlight = {
+        enable = true,
       },
-    insert_at_end = true,
+      indent = { enable = true },
     },
   },
   { -- Tabline: which tabs are open, which are changed, diagnostics
