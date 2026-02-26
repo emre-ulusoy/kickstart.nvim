@@ -362,7 +362,7 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>w', group = '[w]indow' },
+        { '<leader>w', group = '[w]indow' }, -- WARN: doesn't work
         { '<leader>d', group = '[d]iagnostics' },
         { 'gr', group = '[G]oto [R] defs, refs...' },
       },
@@ -462,7 +462,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sc', builtin.commands, { desc = '[S]earch [C]ommands' })
       vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch open [B]uffers by name' })
-      -- custom ---------------------------------------------------------------------
+      vim.keymap.set('n', '<leader><tab>', builtin.buffers, { desc = '[S]earch open [B]uffers by name' }) -- Same as above
       vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = 'Book[M]arks' })
 
       -- This runs on LSP attach per buffer (see main LSP attach function in 'neovim/nvim-lspconfig' config for more info,
