@@ -161,7 +161,9 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-guide-options`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '› ', trail = '·', nbsp = '␣', eol = '•'} -- Some extra symbols: › » ↲
+vim.opt.fixendofline = true
+vim.opt.endofline = true
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -274,6 +276,9 @@ vim.keymap.set({ 'n', 's' }, 's', '<Nop>')
 
 -- Remove whatever ctrl-enter maps to so I can use it globally for other things
 vim.keymap.set('n', '<C-Enter>', '<Nop>')
+
+-- TODO related keymaps
+vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>', { desc = '[S]earch the [T]ODO types of notes' }) -- :TodoQuickFix exists too
 
 -----------------------
 
@@ -464,6 +469,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch open [B]uffers by name' })
       vim.keymap.set('n', '<leader><tab>', builtin.buffers, { desc = '[S]earch open [B]uffers by name' }) -- Same as above
       vim.keymap.set('n', '<leader>sm', builtin.marks, { desc = 'Book[M]arks' })
+      -- <leader>st -> [Search] [T]ODOs and similar notes. (This mapping is in the keymaps section). Also, :TodoQuickFix exists too
 
       -- This runs on LSP attach per buffer (see main LSP attach function in 'neovim/nvim-lspconfig' config for more info,
       -- it is better explained there). This allows easily switching between pickers if you prefer using something else!
