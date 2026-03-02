@@ -4,6 +4,28 @@ return {
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
-  },
+    -- event = { "BufReadPre", "BufNewFile" },
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {
+      -- exclude = {
+      --   filetypes = { "help", "terminal", "dashboard" },
+      -- },
+      indent = {
+        char = "▏",
+        -- highlight = { "CursorColumn", "Whitespace" }
+      },
+      whitespace = {
+        highlight = {
+          "Whitespace"
+        }
+      },
+      scope = {
+        enabled = true
+      }
+    },
+    -- config = function(_, opts)
+    --   require("ibl").setup(opts)
+    -- end,
+  }
 }

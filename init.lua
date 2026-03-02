@@ -161,9 +161,8 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-guide-options`
 vim.o.list = true
-vim.opt.listchars = { tab = '› ', trail = '·', nbsp = '␣', eol = '•'} -- Some extra symbols: › » ↲
-vim.opt.fixendofline = true
-vim.opt.endofline = true
+vim.opt.listchars = { tab = '▏ ', trail = '·', nbsp = '␣' } -- Some extra symbols: › » ↲ • · ➥
+-- vim.opt.showbreak = '➥ '
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -982,6 +981,7 @@ require('lazy').setup({
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
   require 'kickstart.plugins.floaterm',
   require 'kickstart.plugins.toggleterm',
+  -- require 'kickstart.plugins.wakatime',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
