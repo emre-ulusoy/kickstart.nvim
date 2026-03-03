@@ -161,8 +161,8 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-guide-options`
 vim.o.list = true
-vim.opt.listchars = { tab = '▏ ', trail = '·', nbsp = '␣' } -- Some extra symbols: › » ↲ • · ➥
--- vim.opt.showbreak = '➥ '
+vim.opt.listchars = { tab = '▏ ', trail = '·', nbsp = '␣' } -- Some extra symbols: › » ↲ • · ➥ ▏
+vim.opt.showbreak = '➥ '
 
 -- Preview substitutions live, as you type!
 vim.o.inccommand = 'split'
@@ -236,8 +236,12 @@ vim.keymap.set('i', '<C-h>', '<Left>', { desc = 'Move left when in insert mode' 
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Move right when in insert mode' })
 -- vim.keymap.set('i', '<C-k>', '<Nop>') -- Delete Neovim default mapping for Ctrl-K in insert mode
 -- vim.api.nvim_del_keymap('i', '<C-k>') -- Also for deleting whatever it used to be. These aren't really necessary.
-vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' }) -- Doesn't work
+vim.keymap.set('i', '<C-k>', '<Up>', { desc = 'Move up when in insert mode' }) -- Famously doesn't work
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Move down when in insert mode' })
+-- Go up/down without skipping the wrapped lines
+vim.keymap.set('n', 'j', 'gj', { desc = 'Go down without skipping wrapped lines' })
+vim.keymap.set('n', 'k', 'gk', { desc = 'Go up without skipping wrapped lines' })
+
 -- Move screen two lines at
 vim.keymap.set('n', '<C-y>', '<C-y>:sleep 10ms<CR><C-y>', { desc = 'Move view up x2' })
 vim.keymap.set('n', '<C-e>', '<C-e><C-e>', { desc = 'Move view down x2' })

@@ -8,16 +8,18 @@ return {
     ---@module "ibl"
     ---@type ibl.config
     opts = {
-      -- exclude = {
-      --   filetypes = { "help", "terminal", "dashboard" },
-      -- },
+      exclude = {
+        filetypes = { "help", "terminal", "dashboard" },
+      },
       indent = {
         char = "▏",
-        -- highlight = { "CursorColumn", "Whitespace" }
+        repeat_linebreak = false,
+        highlight = { "Whitespace", "CursorColumn" }
       },
       whitespace = {
         highlight = {
-          "Whitespace"
+          -- "Whitespace",
+          "CursorColumn"
         }
       },
       scope = {
