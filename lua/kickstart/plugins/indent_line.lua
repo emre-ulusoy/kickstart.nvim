@@ -14,13 +14,13 @@ return {
       indent = {
         char = "▏",
         repeat_linebreak = false,
-        highlight = { "Whitespace", "CursorColumn" }
+        -- highlight = { "Whitespace", "CursorColumn" }
       },
       whitespace = {
-        highlight = {
-          -- "Whitespace",
-          "CursorColumn"
-        }
+        -- highlight = {
+        --   -- "Whitespace",
+        --   "CursorColumn"
+        -- }
       },
       scope = {
         enabled = true
