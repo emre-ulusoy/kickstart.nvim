@@ -385,6 +385,7 @@ require('lazy').setup({
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>w', group = '[w]indow' }, -- WARN: doesn't work
         { '<leader>d', group = '[d]iagnostics' },
+        { '<leader>a', group = '[A]I', mode = { 'n', 'v' } },
         { 'gr', group = '[G]oto [R] defs, refs...' },
       },
     },
@@ -1044,6 +1045,7 @@ require('lazy').setup({
   require 'kickstart.plugins.floaterm',
   require 'kickstart.plugins.toggleterm',
   -- require 'kickstart.plugins.wakatime',
+  require 'kickstart.plugins.copilot',
   require 'kickstart.plugins.codecompanion',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
