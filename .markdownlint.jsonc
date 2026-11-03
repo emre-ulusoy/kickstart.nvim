@@ -1,0 +1,6 @@
+// Base markdownlint config, passed to markdownlint-cli2 by nvim-lint (see lua/kickstart/plugins/lint.lua).
+// A project's own markdownlint config still applies on top of this.
+{
+  // Line length
+  "MD013": false
+}

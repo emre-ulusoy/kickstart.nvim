@@ -9,6 +9,13 @@ return {
         markdown = { 'markdownlint-cli2' },
       }
 
+      -- Use the base config in this repo (disables MD013 line-length everywhere)
+      lint.linters['markdownlint-cli2'].args = {
+        '--config',
+        vim.fn.stdpath 'config' .. '/.markdownlint.jsonc',
+        '-',
+      }
+
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
       -- lint.linters_by_ft = lint.linters_by_ft or {}
