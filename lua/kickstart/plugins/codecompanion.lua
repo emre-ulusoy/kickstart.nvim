@@ -14,6 +14,13 @@ return {
       inline = { adapter = 'copilot' },
       cmd = { adapter = 'copilot' },
     },
+    display = {
+      chat = {
+        window = {
+          width = 0, -- Leave it to nvim
+        },
+      },
+    },
     -- rules = {
     --   -- Don't auto-add rule files (e.g. ~/.claude/CLAUDE.md, AGENTS.md) to every chat.
     --   -- They can still be added to a chat by hand with the /rules slash command.
